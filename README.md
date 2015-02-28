@@ -1,4 +1,4 @@
-# rlite-py
+# rlite-rb
 
 [![Build Status](https://travis-ci.org/seppo0010/rlite-rb.svg?branch=master)](https://travis-ci.org/seppo0010/rlite-rb)
 
@@ -32,7 +32,7 @@ $ gem install hirlite
 
 ### Persistence
 
-```python
+```ruby
 1.9.3-p551 :001 > require('hirlite')
 => true
 1.9.3-p551 :002 > r = Hirlite::Ext::Rlite.new()
