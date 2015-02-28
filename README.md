@@ -18,7 +18,7 @@ $ gem install hirlite
 => true
 1.9.3-p551 :002 > r = Hirlite::Ext::Rlite.new()
 => #<Hirlite::Ext::Rlite:0x007f90230ae730>
-1.9.3-p551 :003 > r.connect(':memory', 0)
+1.9.3-p551 :003 > r.connect(':memory:', 0)
 => nil
 1.9.3-p551 :004 > r.write(['set', 'key', 'value'])
 => nil
