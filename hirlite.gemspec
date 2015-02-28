@@ -3,7 +3,7 @@ require File.expand_path("../lib/hirlite/version", __FILE__)
 Gem::Specification.new do |s|
   s.name = "hirlite"
   s.version = Hirlite::VERSION
-  s.homepage = "http://github.com/seppo0010/hirlite-rb"
+  s.homepage = "http://github.com/seppo0010/rlite-rb"
   s.authors = ["Sebastian Waisbrot"]
   s.email = ["seppo0010@gmail.com"]
   s.license = 'BSD-3-Clause'
