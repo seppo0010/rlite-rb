@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   end
 
   s.files += Dir["lib/**/*.rb"]
-  s.files += %w(COPYING Rakefile)
+  s.files += %w(LICENSE Rakefile)
 
   s.add_development_dependency "rake", "10.0"
   s.add_development_dependency "rake-compiler", "~> 0.7.1"
