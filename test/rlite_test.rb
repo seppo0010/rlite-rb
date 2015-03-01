@@ -1,14 +1,14 @@
 gem 'minitest'
 require 'minitest/autorun'
 
-require File.expand_path('../../lib/hirlite/ext/hirlite_ext', __FILE__) unless RUBY_PLATFORM =~ /java/
+require File.expand_path('../../lib/hirlite/rlite', __FILE__)
 
 module RliteTests
   attr_reader :hirlite
 
   class ExtRliteTest < Minitest::Test
     def setup
-      @hirlite = Hirlite::Ext::Rlite.new
+      @hirlite = Hirlite::Rlite.new
       @hirlite.connect ":memory:", 0
     end
 
@@ -45,12 +45,19 @@ module RliteTests
       @hirlite.write(['lrange', 'mylist', '0', '-1'])
       assert_equal ['1', '2', '3'], @hirlite.read
     end
+
+    def test_buffered_reads
+      @hirlite.write(['set', 'key', 'value'])
+      @hirlite.write(['get', 'key'])
+      @hirlite.read
+      assert_equal 'value', @hirlite.read
+    end
   end
 
   class ExtRlitePersitentTest < Minitest::Test
     PATH = 'rlite.rld'
     def connect
-      @hirlite = Hirlite::Ext::Rlite.new
+      @hirlite = Hirlite::Rlite.new
       @hirlite.connect PATH, 0
     end
 

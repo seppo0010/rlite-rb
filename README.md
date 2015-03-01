@@ -16,8 +16,8 @@ $ gem install hirlite
 ```ruby
 1.9.3-p551 :001 > require('hirlite')
 => true
-1.9.3-p551 :002 > r = Hirlite::Ext::Rlite.new()
-=> #<Hirlite::Ext::Rlite:0x007f90230ae730>
+1.9.3-p551 :002 > r = Hirlite::Rlite.new()
+=> #<Hirlite::Rlite:0x007f90230ae730>
 1.9.3-p551 :003 > r.connect(':memory:', 0)
 => nil
 1.9.3-p551 :004 > r.write(['set', 'key', 'value'])
@@ -35,8 +35,8 @@ $ gem install hirlite
 ```ruby
 1.9.3-p551 :001 > require('hirlite')
 => true
-1.9.3-p551 :002 > r = Hirlite::Ext::Rlite.new()
-=> #<Hirlite::Ext::Rlite:0x007f92508c4d50>
+1.9.3-p551 :002 > r = Hirlite::Rlite.new()
+=> #<Hirlite::Rlite:0x007f92508c4d50>
 1.9.3-p551 :003 > r.connect('mydb.rld', 0)
 => nil
 1.9.3-p551 :004 > r.write(['set', 'key', 'value'])
