@@ -13,21 +13,26 @@ $ gem install hirlite
 
 ## Usage
 
+### Using redis-rb
+
 ```ruby
-1.9.3-p551 :001 > require('hirlite')
-=> true
-1.9.3-p551 :002 > r = Hirlite::Rlite.new()
-=> #<Hirlite::Rlite:0x007f90230ae730>
-1.9.3-p551 :003 > r.connect(':memory:', 0)
-=> nil
-1.9.3-p551 :004 > r.write(['set', 'key', 'value'])
-=> nil
-1.9.3-p551 :005 > r.read
-=> true
-1.9.3-p551 :006 > r.write(['get', 'key'])
-=> nil
-1.9.3-p551 :007 > r.read
-=> "value"
+require('redis')
+require('hirlite/connection')
+redis = Redis.new(:host => ":memory:", :driver => Rlite::Connection::Hirlite)
+redis.set 'key', 'value'
+p redis.get 'key' # value
+```
+
+### Without redis-rb
+
+```ruby
+require('hirlite')
+r = Hirlite::Rlite.new()
+r.connect(':memory:', 0)
+r.write(['set', 'key', 'value'])
+p r.read  # OK
+r.write(['get', 'key'])
+p r.read  # value
 ```
 
 ### Persistence
