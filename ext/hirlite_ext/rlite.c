@@ -243,9 +243,6 @@ static VALUE createDecodedString(char *str, size_t len) {
 
 static VALUE reply_to_value(rliteReply *reply) {
     if (reply->type == RLITE_REPLY_STATUS || reply->type == RLITE_REPLY_STRING) {
-        if (reply->type == RLITE_REPLY_STATUS && reply->len == 2 && memcmp(reply->str, "OK", 2) == 0) {
-            return Qtrue;
-        }
         return createDecodedString(reply->str, reply->len);
     }
     if (reply->type == RLITE_REPLY_NIL) {
