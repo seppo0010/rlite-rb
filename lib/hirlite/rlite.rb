@@ -8,11 +8,14 @@ module Hirlite
 
     def write(command)
       super
-      @responses.push self.class.superclass.instance_method(:read).bind(self).call
+      @responses.push read_ext
     end
 
-    def read
+    def read_ruby
       @responses.shift
     end
+
+    alias_method :read_ext, :read
+    alias_method :read, :read_ruby
   end
 end
