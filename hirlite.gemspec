@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
     s.files += Dir["ext/**/*.{rb,c,h}"]
     s.files += Dir["vendor/rlite/src/*.{c,h}"] +
       Dir["vendor/rlite/deps/lua/Makefile"] +
+      Dir["vendor/rlite/deps/lua/src/Makefile"] +
       Dir["vendor/rlite/deps/lua/src/*.{c,h}"] +
       Dir["vendor/rlite/Makefile"] +
       Dir["vendor/rlite/src/Makefile"]
