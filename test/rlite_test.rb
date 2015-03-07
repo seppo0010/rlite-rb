@@ -19,7 +19,7 @@ module RliteTests
 
     def test_true
       @hirlite.write(['set', 'key', 'value'])
-      assert_equal true, @hirlite.read
+      assert_equal "OK", @hirlite.read
     end
 
     def test_string
