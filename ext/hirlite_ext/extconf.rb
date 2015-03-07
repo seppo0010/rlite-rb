@@ -21,13 +21,13 @@ end
 
 # Make sure hirlite is built...
 Dir.chdir(hirlite_dir) do
-  success = system("#{make_program} libhirlite.a")
+  success = system("#{make_program} libhirlite.a lua")
   raise "Building hirlite failed" if !success
 end
 
 # Statically link to hirlite (mkmf can't do this for us)
 $CFLAGS << " -I#{hirlite_dir}/src"
-$LDFLAGS << " #{hirlite_dir}/src/libhirlite.a"
+$LDFLAGS << " #{hirlite_dir}/src/libhirlite.a #{hirlite_dir}/deps/lua/src/liblua.a"
 
 have_func("rb_thread_fd_select")
 create_makefile('hirlite/ext/hirlite_ext')
