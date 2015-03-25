@@ -95,7 +95,7 @@ static VALUE rlite_parent_context_alloc(VALUE klass) {
     return Data_Wrap_Struct(klass, parent_context_mark, parent_context_free, pc);
 }
 
-static VALUE rlite_generic_connect(VALUE self, rliteContext *c, VALUE arg_timeout) {
+static VALUE rlite_generic_connect(VALUE self, rliteContext *c) {
     rliteParentContext *pc;
 
     Data_Get_Struct(self,rliteParentContext,pc);
@@ -127,50 +127,30 @@ static VALUE rlite_connect(int argc, VALUE *argv, VALUE self) {
     rliteContext *c;
     VALUE arg_host = Qnil;
     VALUE arg_port = Qnil;
-    VALUE arg_timeout = Qnil;
 
     if (argc == 2 || argc == 3) {
         arg_host = argv[0];
         arg_port = argv[1];
-
-        if (argc == 3) {
-            arg_timeout = argv[2];
-
-            /* Sanity check */
-            if (NUM2INT(arg_timeout) <= 0) {
-                rb_raise(rb_eArgError, "timeout should be positive");
-            }
-        }
     } else {
         rb_raise(rb_eArgError, "invalid number of arguments");
     }
 
     c = rliteConnectNonBlock(StringValuePtr(arg_host), NUM2INT(arg_port));
-    return rlite_generic_connect(self,c,arg_timeout);
+    return rlite_generic_connect(self,c);
 }
 
 static VALUE rlite_connect_unix(int argc, VALUE *argv, VALUE self) {
     rliteContext *c;
     VALUE arg_path = Qnil;
-    VALUE arg_timeout = Qnil;
 
     if (argc == 1 || argc == 2) {
         arg_path = argv[0];
-
-        if (argc == 2) {
-            arg_timeout = argv[1];
-
-            /* Sanity check */
-            if (NUM2INT(arg_timeout) <= 0) {
-                rb_raise(rb_eArgError, "timeout should be positive");
-            }
-        }
     } else {
         rb_raise(rb_eArgError, "invalid number of arguments");
     }
 
     c = rliteConnectUnixNonBlock(StringValuePtr(arg_path));
-    return rlite_generic_connect(self,c,arg_timeout);
+    return rlite_generic_connect(self,c);
 }
 
 static VALUE rlite_is_connected(VALUE self) {
