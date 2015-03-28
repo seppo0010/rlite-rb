@@ -50,6 +50,10 @@ class Rlite
 
       def read
         reply = @connection.read
+        if reply == nil
+            write(['__rlite_poll'])
+            reply = @connection.read
+        end
         reply = CommandError.new(reply.message) if reply.is_a?(RuntimeError)
         reply
       rescue Errno::EAGAIN

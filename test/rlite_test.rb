@@ -67,6 +67,7 @@ module RliteTests
     end
 
     def teardown
+      @hirlite.disconnect
       FileUtils.rm(PATH) if File.file?(PATH)
     end
 
@@ -76,6 +77,24 @@ module RliteTests
       connect  # close db, open a new one
       @hirlite.write(['get', 'key'])
       assert_equal 'value', @hirlite.read
+    end
+
+    def test_pubsub
+        message = 'this is a message'
+        @hirlite.write(['subscribe', 'channel'])
+        assert_equal ["subscribe", "channel", 1], @hirlite.read
+
+        publisher = Hirlite::Rlite.new
+        publisher.connect PATH, 0
+        publisher.write(['publish', 'channel', message])
+        assert_equal 1, publisher.read
+
+        @hirlite.write(['__rlite_poll'])
+        assert_equal ['message', 'channel', 'this is a message'], @hirlite.read
+
+        @hirlite.write(['__rlite_poll'])
+        assert_equal nil, @hirlite.read
+        publisher.disconnect
     end
   end
 end

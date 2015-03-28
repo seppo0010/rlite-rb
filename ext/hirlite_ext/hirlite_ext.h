@@ -8,7 +8,7 @@
  */
 #define RSTRING_NOT_MODIFIED
 
-#include "hirlite.h"
+#include "rlite/hirlite.h"
 #include "ruby.h"
 
 /* Defined in hirlite_ext.c */
