@@ -11,6 +11,8 @@ Ruby bindings for rlite. For more information about rlite, go to
 $ gem install hirlite
 ```
 
+In Ubuntu, you will need to have installed ruby-dev
+
 ## Usage
 
 ### Using redis-rb
